@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/tsconfig.json",
+  "display": "Default",
+  "compilerOptions": {
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": true,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "module": "es2020",
+    "moduleResolution": "bundler",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "types": ["node"],
+    "target": "es2019",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@segundo/temporal-graph-tools": ["src/index.ts"],
+      "@segundo/temporal-graph-tools/*": ["src/*"]
+    }
+  },
+  "include": ["src", "examples/**/*.ts"],
+  "exclude": ["node_modules"]
+}

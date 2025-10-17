@@ -1,0 +1,35 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.rulers": [100],
+  "editor.tabSize": 2,
+  "eslint.enable": true,
+  "eslint.format.enable": false,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.workingDirectories": [{ "mode": "auto" }, { "pattern": "apps/*" }, { "pattern": "packages/*" }],
+  "prettier.configPath": "prettier.config.cjs",
+  "prettier.documentSelectors": ["**/*.{js,jsx,ts,tsx,json,md,yaml,yml}"],
+  "prettier.enableDebugLogs": true,
+  "prettier.prettierPath": "./node_modules/prettier",
+  "prettier.requireConfig": true,
+  "prettier.resolveGlobalModules": false,
+  "prettier.useEditorConfig": false,
+  "files.associations": {
+    "*.json": "jsonc"
+  },
+  "files.eol": "\n",
+  "typescript.preferences.organizeImports": false,
+  "npm.packageManager": "bun",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSave": true
+  }
+}
