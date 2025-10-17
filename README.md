@@ -1,4 +1,4 @@
-# @segundo/temporal-graph-tools
+# @segundoai/temporal-graph-tools
 
 TypeScript utilities for assembling Temporal workflows from plain activity
 functions. Build a workflow plan, capture the generated source code, hydrate
@@ -21,11 +21,11 @@ hand-writing workflow files.
 ## Installation
 
 ```bash
-npm install @segundo/temporal-graph-tools
+npm install @segundoai/temporal-graph-tools
 # or
-pnpm add @segundo/temporal-graph-tools
+pnpm add @segundoai/temporal-graph-tools
 # or
-bun add @segundo/temporal-graph-tools
+bun add @segundoai/temporal-graph-tools
 ```
 
 The package targets Node.js 18+ and ships ESM builds.
@@ -37,7 +37,7 @@ import {
   bundleWorkflows,
   createActivity,
   createWorkflowBuilder,
-} from '@segundo/temporal-graph-tools'
+} from '@segundoai/temporal-graph-tools'
 
 type FetchUserInput = { userId: string }
 type FetchUserOutput = { profile: { id: string; name: string } }

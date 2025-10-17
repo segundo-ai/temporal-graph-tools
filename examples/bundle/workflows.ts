@@ -1,4 +1,4 @@
-import { createActivity, createWorkflowBuilder } from '@segundo/temporal-graph-tools'
+import { createActivity, createWorkflowBuilder } from '@segundoai/temporal-graph-tools'
 import {
   fetchUserProfile,
   logCompletion,

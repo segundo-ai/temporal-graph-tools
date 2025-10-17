@@ -1,5 +1,5 @@
 {
-  "name": "@segundo/temporal-graph-tools",
+  "name": "@segundoai/temporal-graph-tools",
   "version": "0.1.0",
   "description": "Utilities for working with DAG workflows.",
   "license": "MIT",

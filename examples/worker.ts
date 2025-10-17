@@ -1,5 +1,5 @@
+import { bundleWorkflows } from '@segundoai/temporal-graph-tools'
 import { NativeConnection, NativeConnectionOptions, Worker } from '@temporalio/worker'
-import { bundleWorkflows } from '@segundo/temporal-graph-tools'
 import { builderHelloWorld, builderOnboarding } from './bundle/workflows'
 
 export function getConnectionOptions(): NativeConnectionOptions {

@@ -17,10 +17,7 @@ module.exports = {
   proseWrap: 'preserve',
 
   // Plugin configuration
-  plugins: [
-    '@ianvs/prettier-plugin-sort-imports',
-    'prettier-plugin-tailwindcss',
-  ],
+  plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
 
   // File-specific overrides
   overrides: [
@@ -49,8 +46,8 @@ module.exports = {
     '<BUILTIN_MODULES>',
     '^next(/.+)?$',
     '<THIRD_PARTY_MODULES>',
-    '^@segundo/api(/.+)?$',
-    '^@segundo(/.+)?$',
+    '^@segundoai/api(/.+)?$',
+    '^@segundoai(/.+)?$',
     '^@/.*$',
     '^[./]',
   ],

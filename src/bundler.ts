@@ -1,13 +1,13 @@
 import type {
   WorkflowBuildResult,
   WorkflowSourceArtifact,
-} from '@segundo/temporal-graph-tools/types'
-import type { ActivityImplementations } from '@segundo/temporal-graph-tools/workflow-bundler'
+} from '@segundoai/temporal-graph-tools/types'
+import type { ActivityImplementations } from '@segundoai/temporal-graph-tools/workflow-bundler'
 import {
   buildWorkflowBundleCode,
   instantiateActivities,
-} from '@segundo/temporal-graph-tools/workflow-bundler'
-import { collectWorkflowBuildResults } from '@segundo/temporal-graph-tools/workflow/collection'
+} from '@segundoai/temporal-graph-tools/workflow-bundler'
+import { collectWorkflowBuildResults } from '@segundoai/temporal-graph-tools/workflow/collection'
 
 export type BundleWorkflowsOptions = {
   filename?: string

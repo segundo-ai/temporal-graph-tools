@@ -1,10 +1,10 @@
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
-import { bundleWorkflowCode } from '@temporalio/worker'
 import type {
   WorkflowBuildResult,
   WorkflowSourceArtifact,
-} from '@segundo/temporal-graph-tools/types'
+} from '@segundoai/temporal-graph-tools/types'
+import { bundleWorkflowCode } from '@temporalio/worker'
 
 export type ActivityImplementations = Record<string, (...args: unknown[]) => unknown>
 

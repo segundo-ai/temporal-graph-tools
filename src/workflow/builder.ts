@@ -1,4 +1,3 @@
-import type { ActivityOptions } from '@temporalio/workflow'
 import type {
   ActivityBundle,
   ActivityConfig,
@@ -8,8 +7,9 @@ import type {
   ParallelOutputs,
   TemporalWorkflowBuildOptions,
   WorkflowBuildResult,
-} from '@segundo/temporal-graph-tools/types'
-import { deepEqual } from '@segundo/temporal-graph-tools/utils/deep-equal'
+} from '@segundoai/temporal-graph-tools/types'
+import { deepEqual } from '@segundoai/temporal-graph-tools/utils/deep-equal'
+import type { ActivityOptions } from '@temporalio/workflow'
 
 type NormalizedStep = {
   key: string
