@@ -1,14 +1,23 @@
-import { createActivity } from '@segundoai/temporal-graph-tools'
+import kebabCase from 'lodash/kebabCase.js'
+import {
+  createActivity,
+  type ActivityReference,
+  type CreateActivity,
+} from '@segundoai/temporal-graph-tools'
 
 export type FetchUserInput = { userId: string }
 
 export const fetchUserProfile = createActivity(
   async (input: FetchUserInput): Promise<FetchUserOutput> => {
-    console.log(`[fetchUserProfile] fetching ${input.userId}`)
+    const profileName = `User ${input.userId.slice(0, 6)}`
+    const slug = kebabCase(profileName)
+
+    console.log(`[fetchUserProfile] fetching ${input.userId} as ${slug}`)
     return {
       profile: {
         id: input.userId,
-        name: `User ${input.userId.slice(0, 6)}`,
+        name: profileName,
+        slug,
       },
     }
   },
@@ -18,22 +27,22 @@ export const fetchUserProfile = createActivity(
 )
 
 export const sendWelcomeEmail = createActivity(
-  async ({ profile }: FetchUserOutput): Promise<{ sent: boolean }> => {
-    console.log(`[sendWelcomeEmail] sent email to ${profile.name}`)
-    return { sent: true }
+  async ({ profile }: FetchUserOutput): Promise<{ sent: boolean; recipientSlug: string }> => {
+    console.log(`[sendWelcomeEmail] sent email to ${profile.name} (${profile.slug})`)
+    return { sent: true, recipientSlug: profile.slug }
   },
   {
     id: 'sendWelcomeEmail',
   },
 )
 
-export type UserProfile = { id: string; name: string }
+export type UserProfile = { id: string; name: string; slug: string }
 export type FetchUserOutput = { profile: UserProfile }
 
 export const syncCrmRecord = createActivity(
-  async ({ profile }: FetchUserOutput): Promise<{ synced: boolean }> => {
-    console.log(`[syncCrmRecord] synced record ${profile.id}`)
-    return { synced: true }
+  async ({ profile }: FetchUserOutput): Promise<{ synced: boolean; recordSlug: string }> => {
+    console.log(`[syncCrmRecord] synced record ${profile.id} (${profile.slug})`)
+    return { synced: true, recordSlug: profile.slug }
   },
   {
     id: 'syncCrmRecord',
@@ -41,17 +50,19 @@ export const syncCrmRecord = createActivity(
 )
 
 export type ParallelResult = {
-  sendWelcomeEmail: { sent: boolean }
-  syncCrmRecord: { synced: boolean }
+  sendWelcomeEmail: { sent: boolean; recipientSlug: string }
+  syncCrmRecord: { synced: boolean; recordSlug: string }
 }
 
 export const logCompletion = createActivity(
   async (result: ParallelResult): Promise<void> => {
     console.log(
-      `[logCompletion] email sent=${result.sendWelcomeEmail.sent}, crm synced=${result.syncCrmRecord.synced}`,
+      `[logCompletion] email sent=${result.sendWelcomeEmail.sent} (slug=${result.sendWelcomeEmail.recipientSlug}), crm synced=${result.syncCrmRecord.synced}`,
     )
   },
   {
     id: 'logCompletion',
   },
 )
+export const startGreet = createActivity(async () => console.log('Hello '), { id: 'startGreet' })
+export const endGreet = createActivity(async () => console.log('World'), { id: 'endGreet' })

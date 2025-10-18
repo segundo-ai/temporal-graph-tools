@@ -15,7 +15,6 @@ async function run(): Promise<void> {
     connection,
     namespace: process.env.TEMPORAL_NAMESPACE ?? DEFAULT_NAMESPACE,
   })
-  console.log(builderOnboarding.workflowName)
 
   const [onboardingHandle, greetHandle] = await Promise.all([
     client.start(builderOnboarding.workflowName, {

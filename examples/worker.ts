@@ -1,5 +1,5 @@
-import { bundleWorkflows } from '@segundoai/temporal-graph-tools'
 import { NativeConnection, NativeConnectionOptions, Worker } from '@temporalio/worker'
+import { bundleWorkflows, loadActivitiesFromBundle } from '@segundoai/temporal-graph-tools'
 import { builderHelloWorld, builderOnboarding } from './bundle/workflows'
 
 export function getConnectionOptions(): NativeConnectionOptions {
@@ -11,10 +11,14 @@ export function getConnectionOptions(): NativeConnectionOptions {
 }
 
 async function run() {
-  const { activities, workflowBundle } = await bundleWorkflows([
-    builderHelloWorld,
-    builderOnboarding,
-  ])
+  const { workflowBundle, activityBundle } = await bundleWorkflows(
+    [builderHelloWorld, builderOnboarding],
+    {
+      activityBundle: {},
+    },
+  )
+
+  const activities = await loadActivitiesFromBundle(activityBundle)
 
   const connection = await NativeConnection.connect(getConnectionOptions())
   const worker = await Worker.create({

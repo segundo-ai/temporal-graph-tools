@@ -8,6 +8,7 @@ import type {
   TemporalWorkflowBuildOptions,
   WorkflowBuildResult,
 } from '@segundoai/temporal-graph-tools/types'
+import { getActivitySourceFile } from '@segundoai/temporal-graph-tools/types'
 import { deepEqual } from '@segundoai/temporal-graph-tools/utils/deep-equal'
 import type { ActivityOptions } from '@temporalio/workflow'
 
@@ -127,11 +128,13 @@ export class WorkflowBuilder<TCurrentOutput> {
   private createActivityBundle(entry: RegisteredEntry, key: string): ActivityBundle {
     const config = this.prepareConfig(entry.config)
     const name = entry.activity.name?.trim()
+    const sourceFile = getActivitySourceFile(entry.activity)
 
     return {
       implementation: entry.activity,
       ...(name ? { name } : { name: key }),
       ...(config ? { config } : {}),
+      ...(sourceFile ? { sourceFile } : {}),
     }
   }
 
