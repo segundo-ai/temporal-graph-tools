@@ -7,6 +7,29 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./bundler": {
+      "types": "./dist/src/bundler.d.ts",
+      "default": "./dist/src/bundler.js"
+    },
+    "./workflow-bundler": {
+      "types": "./dist/src/workflow-bundler.d.ts",
+      "default": "./dist/src/workflow-bundler.js"
+    },
+    "./workflow/*": {
+      "types": "./dist/src/workflow/*.d.ts",
+      "default": "./dist/src/workflow/*.js"
+    },
+    "./utils/*": {
+      "types": "./dist/src/utils/*.d.ts",
+      "default": "./dist/src/utils/*.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist"
   ],
