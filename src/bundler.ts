@@ -1,5 +1,4 @@
 import { isAbsolute, resolve } from 'node:path'
-import { build as esbuildBuild } from 'esbuild'
 import type {
   ActivityBundle,
   WorkflowBuildResult,
@@ -29,6 +28,40 @@ export type BundledActivitiesArtifact = {
   filename: string
   code: string
   map?: string
+}
+
+type EsbuildApi = typeof import('esbuild')
+
+let cachedEsbuild: EsbuildApi | undefined
+
+async function loadEsbuild(): Promise<EsbuildApi> {
+  if (cachedEsbuild) {
+    return cachedEsbuild
+  }
+
+  const createLoadError = (error: unknown): Error => {
+    if (error instanceof Error) {
+      error.message = `Failed to load esbuild. Install it as a dependency before calling bundleWorkflows(). Original error: ${error.message}`
+
+      return error
+    }
+
+    return new Error(
+      `Failed to load esbuild. Install it as a dependency before calling bundleWorkflows(). Original error: ${String(
+        error,
+      )}`,
+    )
+  }
+
+  try {
+    const esbuildModule = await import('esbuild')
+
+    cachedEsbuild = esbuildModule
+
+    return esbuildModule
+  } catch (error) {
+    throw createLoadError(error)
+  }
 }
 
 export async function loadActivitiesFromBundle(
@@ -149,7 +182,8 @@ async function bundleActivitiesWithEsbuild(
   })
 
   const entrySource = createActivitiesEntrySource(entrypoints)
-  const buildResult = await esbuildBuild({
+  const esbuild = await loadEsbuild()
+  const buildResult = await esbuild.build({
     stdin: {
       contents: entrySource,
       resolveDir: process.cwd(),
