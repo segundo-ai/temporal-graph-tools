@@ -3,15 +3,12 @@ import path, { basename } from 'node:path'
 import {
   WorkflowCodeBundler,
   type WorkflowBundleWithSourceMap,
-} from '@temporalio/worker/lib/workflow/bundler'
+} from '@temporalio/worker/lib/workflow/bundler.js'
 import { createFsFromVolume, Volume } from 'memfs'
 import type { IFs } from 'memfs'
 import { Union, ufs } from 'unionfs'
 import type { IFS, IUnionFs } from 'unionfs'
-import type {
-  WorkflowBuildResult,
-  WorkflowSourceArtifact,
-} from '@segundoai/temporal-graph-tools/types'
+import type { WorkflowBuildResult, WorkflowSourceArtifact } from './types.js'
 
 export type ActivityImplementations = Record<string, (...args: unknown[]) => unknown>
 

@@ -3,8 +3,8 @@ import type {
   WorkflowBuildResult,
   WorkflowCollectionBuildResult,
   WorkflowSourceArtifact,
-} from '@segundoai/temporal-graph-tools/types'
-import { deepEqual } from '@segundoai/temporal-graph-tools/utils/deep-equal'
+} from '../types.js'
+import { deepEqual } from '../utils/deep-equal.js'
 
 export function collectWorkflowBuildResults(
   results: readonly WorkflowBuildResult[],

@@ -7,9 +7,9 @@ import type {
   ParallelOutputs,
   TemporalWorkflowBuildOptions,
   WorkflowBuildResult,
-} from '@segundoai/temporal-graph-tools/types'
-import { getActivitySourceFile } from '@segundoai/temporal-graph-tools/types'
-import { deepEqual } from '@segundoai/temporal-graph-tools/utils/deep-equal'
+} from '../types.js'
+import { getActivitySourceFile } from '../types.js'
+import { deepEqual } from '../utils/deep-equal.js'
 import type { ActivityOptions } from '@temporalio/workflow'
 
 type NormalizedStep = {
